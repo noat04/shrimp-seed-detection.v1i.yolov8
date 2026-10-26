@@ -219,11 +219,15 @@ Nếu model trong tương lai vượt giới hạn dung lượng của GitHub, h
 
 ## Tài liệu bổ sung
 
-- [Hướng dẫn sử dụng và kiểm thử](HOW_TO_USE_AND_TEST.md)
-- [Hướng dẫn AI Service](AI_SERVICE_GUIDE.md)
-- [Hướng dẫn tích hợp AI Service](HUONG_DAN_TICH_HOP_AI_SERVICE.md)
-- [Hướng dẫn triển khai Docker](HUONG_DAN_DOCKER_AI_SERVICE.md)
-- [Trạng thái chi tiết của dự án](PROJECT_STATUS.md)
+- [Hướng dẫn sử dụng và kiểm thử](docs/HOW_TO_USE_AND_TEST.md)
+- [Hướng dẫn AI Service](docs/AI_SERVICE_GUIDE.md)
+- [Hướng dẫn tích hợp AI Service](docs/HUONG_DAN_TICH_HOP_AI_SERVICE.md)
+- [Hướng dẫn triển khai Docker](docs/HUONG_DAN_DOCKER_AI_SERVICE.md)
+- [Trạng thái chi tiết của dự án](docs/PROJECT_STATUS.md)
+- [Dữ liệu lưu trên Cloudinary](docs/CLOUDINARY_DATA.md)
+- [Ảnh kết quả có bounding box](docs/ANNOTATED_IMAGE_INTEGRATION.md)
+- [Công việc cần làm tiếp theo](docs/NEXT_STEPS.md)
+- Sơ đồ quy trình: [toàn quy trình](docs/train_pipeline.png), [cách mô hình học](docs/train_explained.png)
 
 ## Hạn chế hiện tại
 
