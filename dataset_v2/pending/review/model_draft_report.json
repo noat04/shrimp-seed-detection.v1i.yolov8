@@ -1,0 +1,101 @@
+[
+  {
+    "image": "real_001.jpg",
+    "status": "model_draft_unreviewed",
+    "proposals": 173,
+    "conf": 0.2,
+    "tile_size": 320,
+    "ground_truth": false,
+    "body_extent_review_required": true
+  },
+  {
+    "image": "real_002.jpg",
+    "status": "model_draft_unreviewed",
+    "proposals": 21,
+    "conf": 0.2,
+    "tile_size": 128,
+    "ground_truth": false,
+    "body_extent_review_required": true
+  },
+  {
+    "image": "real_004.jpg",
+    "status": "model_draft_unreviewed",
+    "proposals": 54,
+    "conf": 0.2,
+    "tile_size": 128,
+    "ground_truth": false,
+    "body_extent_review_required": true
+  },
+  {
+    "image": "real_005.jpg",
+    "status": "model_draft_unreviewed",
+    "proposals": 80,
+    "conf": 0.2,
+    "tile_size": 320,
+    "ground_truth": false,
+    "body_extent_review_required": true
+  },
+  {
+    "image": "real_006.jpg",
+    "status": "model_draft_unreviewed",
+    "proposals": 179,
+    "conf": 0.2,
+    "tile_size": 320,
+    "ground_truth": false,
+    "body_extent_review_required": true
+  },
+  {
+    "image": "real_007.jpg",
+    "status": "model_draft_unreviewed",
+    "proposals": 286,
+    "conf": 0.2,
+    "tile_size": 320,
+    "ground_truth": false,
+    "body_extent_review_required": true
+  },
+  {
+    "image": "real_008.jpg",
+    "status": "model_draft_unreviewed",
+    "proposals": 43,
+    "conf": 0.2,
+    "tile_size": 320,
+    "ground_truth": false,
+    "body_extent_review_required": true
+  },
+  {
+    "image": "real_009.jpg",
+    "status": "model_draft_unreviewed",
+    "proposals": 352,
+    "conf": 0.2,
+    "tile_size": 320,
+    "ground_truth": false,
+    "body_extent_review_required": true
+  },
+  {
+    "image": "real_010.jpg",
+    "status": "model_draft_unreviewed",
+    "proposals": 75,
+    "conf": 0.2,
+    "tile_size": 320,
+    "ground_truth": false,
+    "body_extent_review_required": true
+  },
+  {
+    "image": "real_011.jpg",
+    "status": "model_draft_unreviewed",
+    "proposals": 222,
+    "conf": 0.2,
+    "tile_size": 320,
+    "ground_truth": false,
+    "body_extent_review_required": true
+  },
+  {
+    "image": "real_012.jpg",
+    "status": "model_draft_unreviewed",
+    "proposals": 35,
+    "conf": 0.2,
+    "tile_size": 320,
+    "ground_truth": false,
+    "body_extent_review_required": true
+  }
+]

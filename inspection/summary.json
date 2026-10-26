@@ -1,0 +1,26 @@
+{
+  "train": {
+    "images": 210,
+    "boxes": 1632,
+    "min": 0,
+    "max": 37,
+    "mean": 7.771428571428571,
+    "invalid": []
+  },
+  "valid": {
+    "images": 60,
+    "boxes": 459,
+    "min": 0,
+    "max": 30,
+    "mean": 7.65,
+    "invalid": []
+  },
+  "test": {
+    "images": 30,
+    "boxes": 226,
+    "min": 0,
+    "max": 30,
+    "mean": 7.533333333333333,
+    "invalid": []
+  }
+}

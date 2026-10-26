@@ -1,0 +1,23 @@
+{
+  "status": "drafts_only_not_ground_truth",
+  "draft_files": 12,
+  "total_proposed_boxes": 1555,
+  "manually_drafted": [
+    "real_003"
+  ],
+  "model_proposed": [
+    "real_001",
+    "real_002",
+    "real_004",
+    "real_005",
+    "real_006",
+    "real_007",
+    "real_008",
+    "real_009",
+    "real_010",
+    "real_011",
+    "real_012"
+  ],
+  "approved_images": 0,
+  "training_ready": false
+}

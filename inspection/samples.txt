@@ -1,0 +1,15 @@
+0: train/benur1_01_02_2_png.rf.f4c3c6610e39ac18904c571594eae35f.jpg
+1: train/benur2_05_02_22_png.rf.96cc5c52be4c175fd9d47a7eb8dc611d.jpg
+2: train/PL3_1_04_05_20_png.rf.00211a2a4c4548cf1f0dd83cf6f521f5.jpg
+3: train/benur1_03_03_13_png.rf.f9514cbb06e9b7595907c9beb5bbf691.jpg
+4: train/benur3_02_03_8_png.rf.95c9b4d931f98f9575458f65380c5699.jpg
+5: valid/benur1_01_01_1_png.rf.bfdbba61c8a53c1498469a98fae763f7.jpg
+6: valid/benur1_03_01_11_png.rf.180734f21bdb1069c895b0c05338f14a.jpg
+7: valid/benur4_03_01_11_png.rf.bd4b3ef0df7e76ec9ba7a75a7f8b8d0b.jpg
+8: valid/benur4_04_01_16_png.rf.f227e1e85d1e5c2ba45aaa079e0f95b1.jpg
+9: valid/benur3_03_03_13_png.rf.beabb8a464c39747e5d50b1292e33f86.jpg
+10: test/benur2_05_05_25_png.rf.5b4c0eabb7c64cd415b77df3cca8f87b.jpg
+11: test/benur3_03_05_15_png.rf.5653b25458e7ee09485e8e525c9e77bb.jpg
+12: test/benur5_02_01_6_png.rf.f4874552e6aa051ddde1bdf9e6dc77e3.jpg
+13: test/benur1_02_05_10_png.rf.166f3660b0a073e421ec91e73913a3c6.jpg
+14: test/benur1_02_03_8_png.rf.83d52bc7c2d1732eaae7ddaf074cf400.jpg

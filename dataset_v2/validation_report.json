@@ -1,0 +1,44 @@
+{
+  "splits": {
+    "train": {
+      "images": 210,
+      "labels": 210,
+      "boxes": 1632,
+      "empty_labels": 24,
+      "missing_labels": 0,
+      "unreadable_images": 0,
+      "invalid_rows": 0,
+      "outside_boxes": 0,
+      "orphan_labels": 0
+    },
+    "val": {
+      "images": 60,
+      "labels": 60,
+      "boxes": 459,
+      "empty_labels": 7,
+      "missing_labels": 0,
+      "unreadable_images": 0,
+      "invalid_rows": 0,
+      "outside_boxes": 0,
+      "orphan_labels": 0
+    },
+    "test": {
+      "images": 30,
+      "labels": 30,
+      "boxes": 226,
+      "empty_labels": 1,
+      "missing_labels": 0,
+      "unreadable_images": 0,
+      "invalid_rows": 0,
+      "outside_boxes": 0,
+      "orphan_labels": 0
+    }
+  },
+  "errors": [],
+  "duplicates_cross_split": [],
+  "pending": {
+    "images": 12,
+    "included_in_training": false,
+    "missing_labels": 12
+  }
+}

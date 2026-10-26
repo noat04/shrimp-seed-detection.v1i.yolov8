@@ -65,12 +65,25 @@ Kết quả trên tập validation:
 
 | Chỉ số | Kết quả | Ý nghĩa |
 |---|---:|---|
-| Precision | 82,8% | Tỷ lệ dự đoán đúng trong các bounding box mà model tạo ra |
-| Recall | 85,1% | Khả năng phát hiện đủ các con tôm có trong ảnh |
+| Precision | 82,7% | Tỷ lệ dự đoán đúng trong các bounding box mà model tạo ra |
+| Recall | 85,0% | Khả năng phát hiện đủ các con tôm có trong ảnh |
 | mAP50 | 85,6% | Chất lượng phát hiện ở ngưỡng IoU 0,5 |
 | mAP50–95 | 27,8% | Chất lượng bounding box ở các ngưỡng nghiêm ngặt hơn |
 
 Model đã nhận diện được phần lớn tôm giống, nhưng vị trí và kích thước bounding box vẫn có thể chưa thật sự sát trong một số trường hợp.
+
+Các con số trên là kết quả **validation** của checkpoint tốt nhất được chọn trong quá trình huấn luyện, không phải kết quả test. Căn cứ là log `runs/detect/shrimp_seed_yolov8n/results.csv`: dòng epoch 29 ghi Precision `0.82659`, Recall `0.84967`, mAP50 `0.85583`, mAP50–95 `0.27836`; các số trong bảng được đổi sang phần trăm và làm tròn một chữ số thập phân. `train_yolo.py` yêu cầu huấn luyện 30 epoch và Ultralytics lưu checkpoint tốt nhất tại `runs/detect/shrimp_seed_yolov8n/weights/best.pt`. README còn ghi kết quả đánh giá riêng trên test (Precision 79,90%, Recall 80,90%, mAP50 78,01%, mAP50–95 24,86%); nên báo cáo rõ đang nói về validation hay test.
+
+### Căn cứ và ý nghĩa của số liệu
+
+- Số ảnh được đếm từ các tệp trong `train/images`, `valid/images`, `test/images`; repo hiện có lần lượt 210, 60 và 30 ảnh.
+- Số bounding box được tính bằng tổng số dòng nhãn không rỗng trong các thư mục `train/labels`, `valid/labels`, `test/labels`. Mỗi dòng YOLO biểu diễn một đối tượng: `class_id x_center y_center width height`. Kiểm tra các nhãn hiện có cho kết quả 1.632, 459 và 226 box. Ảnh không có dòng nhãn sẽ không đóng góp box.
+- `data.yaml` chỉ định đường dẫn ba split và một class `shrimp-seed`; `README.roboflow.txt` cho biết dataset được xuất từ Roboflow, tự định hướng ảnh theo EXIF và resize ảnh về 640 × 640 bằng Stretch; không áp dụng augmentation khi xuất dataset.
+- `results.csv` do Ultralytics sinh trong lúc validation cuối mỗi epoch. Nó là nguồn cho các metric validation; không thể suy ra những metric này chỉ từ số ảnh/box trong bảng dataset. Muốn đánh giá tổng quát hóa, dùng checkpoint `best.pt` chạy trên split test chưa dùng để chọn model.
+
+Precision = TP / (TP + FP): trong các box model dự đoán, tỷ lệ box khớp một đối tượng thật. Recall = TP / (TP + FN): trong các đối tượng thật được gán nhãn, tỷ lệ model tìm thấy. TP/FP/FN được xác định bằng cách ghép dự đoán với nhãn thật theo class và độ chồng lấn IoU; dự đoán trùng nhau hoặc không khớp đủ mức IoU có thể bị tính là FP, đối tượng bị bỏ sót là FN.
+
+IoU (Intersection over Union) = diện tích giao nhau của box dự đoán và box nhãn thật chia cho diện tích hợp của hai box. AP là diện tích dưới đường cong Precision–Recall cho một class khi thay đổi ngưỡng confidence; mAP là trung bình AP trên các class. Vì project chỉ có một class, mAP ở đây là AP của class `shrimp-seed`. `mAP50` tính tại IoU 0,50; `mAP50–95` lấy trung bình qua IoU 0,50, 0,55, …, 0,95, nên nghiêm ngặt hơn về độ khít của box. Vì thế mAP50–95 thấp hơn đáng kể cho thấy model thường tìm được tôm nhưng khung định vị còn chưa chính xác ở các chuẩn IoU cao. Các metric này đo detection, không trực tiếp đo sai số đếm; muốn báo cáo khả năng đếm cần thêm MAE/RMSE trên từng ảnh.
 
 Model đang chạy bằng CPU Intel Core i5-11400H. Thời gian xử lý đo được khoảng 93 ms cho mỗi ảnh, tương đương khoảng 10 ảnh mỗi giây trong điều kiện thử nghiệm.
 
@@ -95,7 +108,41 @@ Số tôm = số bounding box còn lại sau khi YOLO lọc kết quả
 
 Số lượng phụ thuộc vào chất lượng model và ngưỡng `conf`. Ngưỡng thấp có thể phát hiện nhiều hơn nhưng dễ nhận nhầm; ngưỡng cao giảm nhận nhầm nhưng có thể bỏ sót tôm.
 
-### 4.2. Dự đoán bằng dòng lệnh
+### 4.2. Cách YOLOv8 phát hiện tôm giống từ ảnh
+
+#### Model và cách học
+
+Project dùng biến thể **YOLOv8n (nano)** từ Ultralytics, khởi tạo bằng trọng số pretrained `yolov8n.pt`, sau đó fine-tune cho bài toán detection một class. Cấu hình thực tế nằm trong `train_yolo.py`, `data.yaml` và `runs/detect/shrimp_seed_yolov8n/args.yaml`: 30 epoch, ảnh 640 × 640, batch 8, pretrained bật, chạy CPU. Ultralytics/PyTorch xây dựng và huấn luyện mạng; Pillow đọc ảnh API; FastAPI nhận file và trả JSON.
+
+Ở mức khái niệm, mạng gồm **backbone** trích xuất đặc trưng từ cạnh, hình dạng, màu sắc và cấu trúc ở nhiều mức; **neck** kết hợp đặc trưng độ phân giải cao/thấp để vừa nhận vật thể nhỏ vừa nhận ngữ cảnh; và **detection head** dự đoán class, độ tin cậy và tọa độ box tại nhiều vị trí/kích thước. YOLOv8 dùng head không anchor (anchor-free). Đây là mô tả kiến trúc chung của YOLOv8; cấu hình model và trọng số cụ thể mà project nạp là file `best.pt`.
+
+Trong lúc huấn luyện, ảnh train đi cùng nhãn box YOLO để tính loss định vị box, phân loại class và phân bố cạnh box. Trọng số được cập nhật để giảm loss qua các batch và epoch. Tập validation dùng để theo dõi chất lượng và chọn checkpoint; nó không được dùng như ảnh train để cập nhật trọng số. Split test dành cho đánh giá cuối độc lập.
+
+#### Từ ảnh đến JSON kết quả
+
+Luồng xử lý một ảnh:
+
+1. API đọc bytes ảnh tải lên bằng Pillow và gọi `convert("RGB")`. Ảnh màu được chuẩn hóa về ba kênh Red, Green, Blue; ảnh xám hoặc ảnh có kênh trong suốt cũng được chuyển thành ảnh RGB để đầu vào nhất quán.
+2. Khi nhận ảnh PIL, Ultralytics chuyển ảnh sang mảng NumPy. Trong đường đi nội bộ của phiên bản đang dùng, mảng được đảo thứ tự kênh RGB thành BGR ở bước nạp ảnh, rồi predictor đổi BGR trở lại RGB trước khi tạo tensor. Đây là chuyển đổi nội bộ có cặp tương ứng; dữ liệu cuối cùng đưa vào model vẫn theo thứ tự RGB.
+3. Ultralytics đổi kích thước ảnh để phù hợp với `imgsz` (mặc định 640). Với ảnh không vuông, LetterBox giữ nguyên tỷ lệ khung hình, thu nhỏ ảnh rồi thêm phần đệm (padding, thường màu xám) để đạt kích thước cần thiết thay vì kéo giãn làm méo con tôm. Dataset huấn luyện hiện có ảnh 640 × 640, nhưng ảnh tải lên API có thể có kích thước khác.
+4. Mảng ảnh được đổi từ dạng `(cao, rộng, 3)` sang tensor dạng `(batch, 3, cao, rộng)`, là thứ tự chiều mà PyTorch/model sử dụng. Giá trị pixel ban đầu trong khoảng 0–255 được đổi sang số thực trong khoảng 0–1 bằng cách chia cho 255; model đang dùng float32 trên CPU.
+5. Detection head sinh nhiều ứng viên. Mỗi ứng viên có class ID, score/confidence và tọa độ box. Vì chỉ có class `shrimp-seed`, class ID `0` được ánh xạ thành tên này; confidence là điểm tin cậy model gán cho phát hiện, không phải xác suất hiệu chuẩn đảm bảo đúng tuyệt đối.
+6. Ultralytics áp dụng ngưỡng confidence `conf` (API mặc định `0.25`, có thể truyền giá trị 0–1) để bỏ ứng viên yếu, rồi dùng Non-Maximum Suppression (NMS) để ưu tiên box điểm cao và bỏ box chồng lấn quá nhiều, tránh mô tả lặp cùng một con.
+7. Ultralytics ánh xạ tọa độ box trở lại kích thước ảnh gốc. `ai_service/main.py` đọc `xyxy` (x1,y1 góc trái trên; x2,y2 góc phải dưới), làm tròn hai chữ số, lấy confidence/class và tạo JSON. `count` bằng số box còn lại sau lọc/NMS; do đó đây là số dự đoán, không phải nhãn thật hay cam kết đếm tuyệt đối chính xác.
+8. Sau khi suy luận thành công, API gửi bytes của ảnh gốc lên Cloudinary trong thread pool. Ảnh được lưu trong `shrimp-detection/originals`; ảnh được upload là ảnh gốc, không phải tensor đã resize/chuẩn hóa.
+
+Các thư viện chính được khai báo trong `requirements.txt`: `ultralytics==8.3.184` (YOLOv8, inference, hậu xử lý và metric), `torch`/`torchvision` (tensor và thực thi mô hình, được kéo theo theo môi trường cài đặt), `fastapi` và `uvicorn` (HTTP API), `Pillow` (đọc/chuyển ảnh), `python-multipart` (nhận upload), cùng Cloudinary SDK để backup ảnh. Script huấn luyện gọi API Python của Ultralytics trực tiếp.
+
+RGB mô tả thứ tự ba thành phần màu của từng pixel: đỏ (Red), xanh lá (Green) và xanh dương (Blue). Chẳng hạn, pixel `(255, 0, 0)` là đỏ thuần. Chuyển ảnh sang RGB không phải là bước nhận diện hay làm ảnh rõ hơn; mục đích là đưa ảnh về định dạng màu thống nhất. Các bước đổi kích thước, thêm padding, sắp xếp chiều tensor và chuẩn hóa pixel mới là phần tiền xử lý để model nhận ảnh.
+
+```text
+Ảnh gốc → RGB → resize/letterbox → tensor RGB, pixel 0–1 → YOLO dự đoán box, class, confidence
+    → lọc confidence và NMS → chuyển tọa độ, đếm → upload ảnh gốc → JSON
+```
+
+`conf` thấp thường giữ lại nhiều dự đoán hơn, nhưng có thể tăng nhận nhầm. `conf` cao giảm dự đoán yếu, nhưng có thể làm bỏ sót tôm. NMS giúp tránh đếm một con nhiều lần khi model tạo các box gần trùng nhau.
+
+### 4.3. Dự đoán bằng dòng lệnh
 
 Có thể xử lý một ảnh hoặc toàn bộ thư mục ảnh:
 
@@ -116,7 +163,7 @@ runs/detect/predict
 
 Nếu chạy nhiều lần, YOLO có thể tạo thêm các thư mục `predict2`, `predict3`, v.v.
 
-### 4.3. AI API
+### 4.4. AI API
 
 Dự án có FastAPI để nhận ảnh và trả kết quả nhận diện.
 
@@ -138,17 +185,20 @@ API hiện có hai endpoint:
 GET /health
 ```
 
-Dùng để kiểm tra service, đường dẫn model và trạng thái nạp model.
+Dùng để kiểm tra service, đường dẫn model, trạng thái nạp model và cấu hình Cloudinary.
 
 ```http
 POST /predict
 ```
 
-Dùng để tải ảnh lên và nhận kết quả phát hiện. Ví dụ response:
+Dùng để tải ảnh lên, nhận kết quả phát hiện và lưu ảnh gốc lên Cloudinary. Ví dụ response:
 
 ```json
 {
   "filename": "sample.jpg",
+  "image_saved": true,
+  "image_url": "https://res.cloudinary.com/<cloud-name>/image/upload/...",
+  "public_id": "shrimp-detection/originals/...",
   "image": {
     "width": 640,
     "height": 640
@@ -175,8 +225,11 @@ Trong đó:
 - `count`: số con tôm được phát hiện.
 - `confidence`: độ tin cậy của từng phát hiện.
 - `box`: tọa độ góc trên trái và góc dưới phải của bounding box.
+- `image_saved`: xác nhận ảnh gốc đã được backup lên Cloudinary.
+- `image_url`: URL HTTPS dùng để xem ảnh đã lưu.
+- `public_id`: mã asset dùng để quản lý hoặc truy xuất ảnh trên Cloudinary.
 
-API đã được kiểm tra và trả mã HTTP `200`. Với ảnh thử nghiệm đã kiểm tra, nhãn gốc có 12 đối tượng và model cũng dự đoán 12 đối tượng. Tuy nhiên, đây là ảnh thuộc tập train nên vẫn cần thử thêm bằng ảnh test và ảnh thực tế bên ngoài dataset.
+Các kiểm thử tự động dùng mock Cloudinary bao phủ bốn trường hợp: thiếu cấu hình, upload thành công, lỗi upload và ảnh không hợp lệ. Chưa kiểm thử upload trực tiếp lên tài khoản Cloudinary thật; bước đó cần credentials hợp lệ trong biến môi trường.
 
 ## 5. Xử lý ảnh mới
 

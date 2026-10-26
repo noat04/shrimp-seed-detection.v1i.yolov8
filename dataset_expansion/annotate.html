@@ -1,0 +1,37 @@
+<!doctype html><meta charset="utf-8"><title>G?n nh?n t?m gi?ng</title>
+<style>body{font:16px system-ui;margin:24px;background:#eef2f6}canvas{display:block;max-width:100%;background:white;touch-action:none;margin:16px 0}button,input{margin:6px;padding:8px}#status{white-space:pre-wrap}</style>
+<h2>G?n nh?n: m?t box cho m?t con t?m</h2>
+<p>Ch?n ?nh g?c. K?o chu?t ?? bao ph?n c? th? nh?n th?y c?a m?i con, g?m ??u v? th?n/?u?i, b? r?u v? ch?n m?nh. Kh?ng ?o?n con b? che k?n. Box ??nh s? ?? ki?m ??m.</p>
+<input id="file" type="file" accept="image/*"><button id="undo">Ho?n t?c</button><button id="clear">X?a h?t</button>
+<button id="save">T?i nh?n YOLO .txt</button><span id="status">Ch?a ch?n ?nh</span><p>Import draft YOLO labels after opening image. Right-click inside a box to delete it; draw a replacement to correct its extent.</p><input id="labels" type="file" accept=".txt"><canvas id="canvas"></canvas>
+<script>
+const canvas=document.querySelector('#canvas'),ctx=canvas.getContext('2d'),status=document.querySelector('#status');
+let img=null,boxes=[],start=null,filename='',imageUrl=null,dirty=false;
+function draw(preview){if(!img)return;ctx.drawImage(img,0,0);ctx.strokeStyle='#f00';ctx.lineWidth=Math.max(1,canvas.width/600);ctx.font=`${Math.max(12,canvas.width/60)}px sans-serif`;boxes.forEach((b,i)=>{ctx.strokeRect(b[0],b[1],b[2]-b[0],b[3]-b[1]);ctx.fillStyle='#f00';ctx.fillText(i+1,b[0],Math.max(14,b[1]));});if(preview)ctx.strokeRect(...preview);status.textContent=`${filename}: ${canvas.width} ? ${canvas.height}, ${boxes.length} con${dirty?' (ch?a xu?t nh?n)':''}`;}
+function point(e){const r=canvas.getBoundingClientRect();return [Math.max(0,Math.min(canvas.width,(e.clientX-r.left)*canvas.width/r.width)),Math.max(0,Math.min(canvas.height,(e.clientY-r.top)*canvas.height/r.height))];}
+document.querySelector('#file').onchange=e=>{const f=e.target.files[0];if(!f)return;if(dirty&&!confirm('Ch?a xu?t nh?n. B? thay ??i?'))return;filename=f.name;boxes=[];dirty=false;start=null;if(imageUrl)URL.revokeObjectURL(imageUrl);imageUrl=URL.createObjectURL(f);img=new Image();img.onload=()=>{canvas.width=img.naturalWidth;canvas.height=img.naturalHeight;draw();};img.src=imageUrl;};
+canvas.onpointerdown=e=>{if(!img)return;start=point(e);canvas.setPointerCapture(e.pointerId);};
+canvas.onpointermove=e=>{if(start){const p=point(e);draw([start[0],start[1],p[0]-start[0],p[1]-start[1]]);}};
+canvas.onpointerup=e=>{if(!start)return;const p=point(e),b=[Math.min(start[0],p[0]),Math.min(start[1],p[1]),Math.max(start[0],p[0]),Math.max(start[1],p[1])];if(b[2]-b[0]>=2&&b[3]-b[1]>=2){boxes.push(b);dirty=true;}start=null;draw();};
+canvas.onpointercancel=()=>{start=null;draw();};
+document.querySelector('#undo').onclick=()=>{if(boxes.length){boxes.pop();dirty=true;draw();}};
+document.querySelector('#clear').onclick=()=>{if(confirm('X?a t?t c? box?')){boxes=[];dirty=true;draw();}};
+document.querySelector('#save').onclick=()=>{if(!img)return;if(!boxes.length&&!confirm('Xu?t nh?n r?ng: ?nh ???c xem l? kh?ng c? t?m. Ti?p t?c?'))return;const w=canvas.width,h=canvas.height;const text=boxes.map(b=>`0 ${((b[0]+b[2])/2/w).toFixed(6)} ${((b[1]+b[3])/2/h).toFixed(6)} ${((b[2]-b[0])/w).toFixed(6)} ${((b[3]-b[1])/h).toFixed(6)}`).join('\n');const url=URL.createObjectURL(new Blob([text?text+'\n':''],{type:'text/plain'}));const a=document.createElement('a');a.href=url;a.download=filename.replace(/\.[^.]+$/,'')+'.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);dirty=false;draw();};
+document.querySelector('#labels').onchange=async e=>{
+ if(!img){alert('Open image first');return;}
+ const f=e.target.files[0];if(!f)return;
+ if(f.name.replace(/\.txt$/i,'')!==filename.replace(/\.[^.]+$/,'')){alert('Label filename must match image');return;}
+ try{
+ const parsed=(await f.text()).split(/\r?\n/).filter(l=>l.trim()).map(line=>{
+ const v=line.trim().split(/\s+/).map(Number);
+ if(v.length!==5||v.some(n=>!Number.isFinite(n))||v[0]!==0||v[3]<=0||v[4]<=0)throw Error('Invalid YOLO label');
+ const [c,x,y,w,h]=v;const b=[(x-w/2)*canvas.width,(y-h/2)*canvas.height,(x+w/2)*canvas.width,(y+h/2)*canvas.height];
+ if(b[0]<-0.01||b[1]<-0.01||b[2]>canvas.width+0.01||b[3]>canvas.height+0.01)throw Error('Box outside image');return b;});
+ if(dirty&&!confirm('Replace current boxes with imported labels?'))return;
+ boxes=parsed;dirty=true;draw();
+ }catch(err){alert(err.message);}
+};
+canvas.oncontextmenu=e=>{e.preventDefault();const [x,y]=point(e);for(let i=boxes.length-1;i>=0;i--){const b=boxes[i];if(x>=b[0]&&x<=b[2]&&y>=b[1]&&y<=b[3]){boxes.splice(i,1);dirty=true;draw();break;}}};
+canvas.addEventListener('pointerdown',e=>{if(e.button===2)start=null;});
+window.onbeforeunload=e=>{if(dirty){e.preventDefault();e.returnValue='';}};
+</script>

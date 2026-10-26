@@ -147,6 +147,9 @@ Response mẫu:
 ```json
 {
   "filename": "sample.jpg",
+  "image_saved": true,
+  "image_url": "https://res.cloudinary.com/<cloud-name>/image/upload/...",
+  "public_id": "shrimp-detection/originals/...",
   "image": {
     "width": 640,
     "height": 640
@@ -174,6 +177,28 @@ Có thể sử dụng model ở vị trí khác bằng biến môi trường:
 $env:MODEL_PATH = "D:\models\shrimp\best.pt"
 uvicorn ai_service.main:app --host 0.0.0.0 --port 8001
 ```
+
+### Cấu hình Cloudinary
+
+SDK Cloudinary đã được khai báo trong `requirements.txt`. Để cấu hình khi phát triển trên máy cá nhân, sao chép `.env.example` thành `.env` và điền credentials lấy từ Cloudinary Console:
+
+```text
+CLOUDINARY_CLOUD_NAME=...
+CLOUDINARY_API_KEY=...
+CLOUDINARY_API_SECRET=...
+```
+
+File `.env` đã được Git ignore. Khi deploy, hãy cấu hình ba giá trị này trong phần environment variables/secrets của nền tảng chạy service; không đưa API secret vào source code hoặc repository. Nếu chưa cấu hình credential nào, service vẫn có thể khởi động; `/health` sẽ trả `cloudinary_configured: false`, còn `/predict` trả HTTP 503. Khi cấu hình thiếu một hoặc hai giá trị, service báo lỗi lúc khởi động để tránh chạy với thiết lập không đầy đủ. Khi Cloudinary từ chối hoặc không nhận được upload, `/predict` trả HTTP 502 để báo ảnh chưa được backup.
+
+### Chạy kiểm thử
+
+Các bài kiểm thử dùng `unittest` và mock Cloudinary, nên không cần tài khoản Cloudinary hoặc credentials:
+
+```powershell
+python -m unittest discover -s tests -v
+```
+
+Các test bao gồm Cloudinary chưa cấu hình, upload thành công, lỗi upload và ảnh không hợp lệ.
 
 ## Đưa dự án lên GitHub
 
