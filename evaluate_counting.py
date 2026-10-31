@@ -3,7 +3,7 @@
 Usage: python evaluate_counting.py [valid|test]
 """
 
-import sys
+import argparse
 from pathlib import Path
 
 from ultralytics import YOLO
@@ -25,15 +25,30 @@ CONFIGS = [
 
 
 def main() -> None:
-    split = sys.argv[1] if len(sys.argv) > 1 else "valid"
-    images = sorted((ROOT_DIR / split / "images").glob("*"))
-    model = YOLO(str(DEFAULT_MODEL_PATH))
+    parser = argparse.ArgumentParser(description="Compare counting settings against ground-truth labels.")
+    parser.add_argument("split", nargs="?", choices=["valid", "test"], default="valid")
+    parser.add_argument("--dataset-root", type=Path, default=ROOT_DIR)
+    parser.add_argument("--model", type=Path, default=DEFAULT_MODEL_PATH)
+    args = parser.parse_args()
+    split = args.split
+    dataset_root = args.dataset_root.resolve()
+    images = sorted(p for p in (dataset_root / split / "images").glob("*")
+                    if p.suffix.lower() in {".jpg", ".jpeg", ".png"})
+    if not images:
+        parser.error("No images found in the selected split")
+    if not args.model.is_file():
+        parser.error(f"Model does not exist: {args.model}")
 
     truth = {}
     for image_path in images:
-        label_path = ROOT_DIR / split / "labels" / f"{image_path.stem}.txt"
-        truth[image_path] = len(label_path.read_text().splitlines()) if label_path.exists() else 0
+        label_path = dataset_root / split / "labels" / f"{image_path.stem}.txt"
+        if not label_path.is_file():
+            parser.error(f"Missing ground-truth label: {label_path}")
+        truth[image_path] = sum(bool(line.strip()) for line in label_path.read_text().splitlines())
 
+    model = YOLO(str(args.model))
+    print(f"Model: {args.model.resolve()}")
+    print(f"Dataset: {dataset_root}")
     print(f"{split}: {len(images)} images, {sum(truth.values())} ground-truth boxes")
     print(f"{'config':<22}{'MAE':>8}{'bias':>8}{'total':>8}")
 

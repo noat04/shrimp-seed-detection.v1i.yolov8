@@ -1,0 +1,76 @@
+{
+  "splits": {
+    "train": {
+      "images": 685,
+      "labels": 685,
+      "boxes": 18439,
+      "empty_labels": 0,
+      "missing_labels": 0,
+      "invalid_rows": 0,
+      "unreadable_images": 0,
+      "outside_boxes": 0,
+      "classes": {
+        "0": 18439
+      },
+      "sizes": {
+        "(640, 640)": 685
+      },
+      "orphan_labels": 0
+    },
+    "valid": {
+      "images": 30,
+      "labels": 30,
+      "boxes": 871,
+      "empty_labels": 0,
+      "missing_labels": 0,
+      "invalid_rows": 0,
+      "unreadable_images": 0,
+      "outside_boxes": 0,
+      "classes": {
+        "0": 871
+      },
+      "sizes": {
+        "(640, 640)": 30
+      },
+      "orphan_labels": 0
+    },
+    "test": {
+      "images": 33,
+      "labels": 33,
+      "boxes": 711,
+      "empty_labels": 0,
+      "missing_labels": 0,
+      "invalid_rows": 0,
+      "unreadable_images": 0,
+      "outside_boxes": 0,
+      "classes": {
+        "0": 711
+      },
+      "sizes": {
+        "(640, 640)": 33
+      },
+      "orphan_labels": 0
+    }
+  },
+  "errors": [],
+  "duplicates_cross_split": [],
+  "root_overlap": {
+    "train": {
+      "root_images": 895,
+      "external_images_also_at_root": 685
+    },
+    "valid": {
+      "root_images": 90,
+      "external_images_also_at_root": 30
+    },
+    "test": {
+      "root_images": 63,
+      "external_images_also_at_root": 33
+    }
+  },
+  "original_v2_overlap": {
+    "train": 0,
+    "valid": 0,
+    "test": 0
+  }
+}

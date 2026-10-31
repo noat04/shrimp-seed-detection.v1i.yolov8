@@ -2,7 +2,8 @@
 
 import unittest
 from io import BytesIO
-from unittest.mock import patch
+from unittest.mock import patch, Mock
+from types import SimpleNamespace
 import numpy as np
 from PIL import Image
 
@@ -51,3 +52,21 @@ class AnnotationTests(unittest.TestCase):
         encoded = Image.open(BytesIO(upload.call_args.args[0].getvalue()))
         self.assertEqual(encoded.getpixel((0, 79)), (255, 0, 0))
         self.assertEqual(image.getpixel((30, 40)), (255, 0, 0))
+
+
+class TiledColorTests(unittest.TestCase):
+    def test_tiles_preserve_colors_expected_by_numpy_detector_input(self):
+        rgb = np.zeros((4, 6, 3), dtype=np.uint8)
+        rgb[:, :3] = [255, 30, 10]
+        rgb[:, 3:] = [20, 80, 240]
+        image = Image.fromarray(rgb)
+        detector = Mock()
+        detector.predict.return_value = [SimpleNamespace(names={0: "shrimp-seed"}, boxes=[])]
+        names, detections = main.detect_tiled(detector, image, .25, 640, 300, 4, .25, .5)
+        self.assertEqual(detector.predict.call_count, 2)
+        for call, x in zip(detector.predict.call_args_list, [0, 2]):
+            actual = call.kwargs["source"]
+            np.testing.assert_array_equal(actual, rgb[:, x:x+4, ::-1])
+        np.testing.assert_array_equal(np.asarray(image), rgb)
+        self.assertEqual(names, {0: "shrimp-seed"})
+        self.assertEqual(detections, [])

@@ -8,6 +8,7 @@ from ultralytics import YOLO
 
 
 def validate(data):
+    data = Path(data).resolve()
     config = yaml.safe_load(data.read_text(encoding="utf-8"))
     if config.get("nc") != 1 or config.get("names") not in (["shrimp-seed"], {0: "shrimp-seed"}):
         raise ValueError("Expected nc=1 and names: [shrimp-seed]")
@@ -73,7 +74,7 @@ def main():
     parser.add_argument("--workers", type=int, default=2)
     parser.add_argument("--name", default="shrimp_seed_tiles_v3")
     args = parser.parse_args()
-    if not args.reviewed:
+    if not args.check_only and not args.reviewed:
         parser.error("Manual review required: pass --reviewed only after checking all labels and split groups")
     if args.epochs < 1:
         parser.error("epochs must be positive")

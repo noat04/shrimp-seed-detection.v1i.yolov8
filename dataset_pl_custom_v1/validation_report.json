@@ -1,0 +1,25 @@
+{
+  "splits": {
+    "train": {
+      "images": 691,
+      "boxes": 19424
+    },
+    "valid": {
+      "images": 31,
+      "boxes": 919
+    },
+    "test": {
+      "images": 34,
+      "boxes": 806
+    }
+  },
+  "pending_images": 8,
+  "pending_drafts": 8,
+  "pending_labels_for_review": 8,
+  "pending_included_in_training": true,
+  "cross_split_byte_duplicates": [],
+  "label_semantics": "PL Detection samples use head/anterior boxes; custom labels need the same reviewed convention.",
+  "custom_images_included": 8,
+  "custom_approval": "User confirmed reviewed; see custom_inclusion.json",
+  "split_limitation": "Capture-session provenance unknown; only exact image cross-split duplicates checked for custom additions."
+}

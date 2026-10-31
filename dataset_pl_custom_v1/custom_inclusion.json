@@ -1,0 +1,72 @@
+{
+  "custom_images_included": 8,
+  "custom_box_count": 1128,
+  "assignments": [
+    {
+      "id": "real_001",
+      "split": "train",
+      "boxes": 328,
+      "label_sha256": "96d211e49573860897b1b0447b1104f7e199feb6fcd98dbea9b6eea997c3b5d0",
+      "approval": "user confirmed reviewed in chat",
+      "source_session": "unknown"
+    },
+    {
+      "id": "real_003",
+      "split": "train",
+      "boxes": 40,
+      "label_sha256": "ca5fce5f7818d91f7eaf9181ca33e450b8612b8a3bf9c48f96b976a160014ab5",
+      "approval": "user confirmed reviewed in chat",
+      "source_session": "unknown"
+    },
+    {
+      "id": "real_004",
+      "split": "train",
+      "boxes": 311,
+      "label_sha256": "d10a293cb91e486678c82fa60f7f79b44b8610e5d812c3a150db61e9a11e661e",
+      "approval": "user confirmed reviewed in chat",
+      "source_session": "unknown"
+    },
+    {
+      "id": "real_005",
+      "split": "train",
+      "boxes": 85,
+      "label_sha256": "67e81c8e3aa441025fa52d402a0c4f7022d9dbc5045aa2116963baeb2af4b542",
+      "approval": "user confirmed reviewed in chat",
+      "source_session": "unknown"
+    },
+    {
+      "id": "real_007",
+      "split": "train",
+      "boxes": 124,
+      "label_sha256": "f842411b6bdc80ea0c00b9ab859eb748272d87d545f3521fc511b72d84e06a5d",
+      "approval": "user confirmed reviewed in chat",
+      "source_session": "unknown"
+    },
+    {
+      "id": "real_008",
+      "split": "train",
+      "boxes": 97,
+      "label_sha256": "65b8157f2c63b334d35b287f57a2cbbf1f4a4d2ea15a90d288994b40bc880ff1",
+      "approval": "user confirmed reviewed in chat",
+      "source_session": "unknown"
+    },
+    {
+      "id": "real_012",
+      "split": "valid",
+      "boxes": 48,
+      "label_sha256": "77cb52cf03a1beb2b45e20025696ea017167c2adf23d1c1ac817f7f6d757f78f",
+      "approval": "user confirmed reviewed in chat",
+      "source_session": "unknown"
+    },
+    {
+      "id": "real_011",
+      "split": "test",
+      "boxes": 95,
+      "label_sha256": "4a9871d7a28abf6c9c8732b2ddad0075930e058a81e6caf5ea1b625a5c56604d",
+      "approval": "user confirmed reviewed in chat",
+      "source_session": "unknown"
+    }
+  ],
+  "split_basis": "6/1/1 image-level split; no identical decoded images cross splits. Capture-session provenance unavailable, so session independence not verified.",
+  "training_started": false
+}

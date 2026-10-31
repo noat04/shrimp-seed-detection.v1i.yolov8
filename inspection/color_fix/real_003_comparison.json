@@ -1,0 +1,45 @@
+{
+  "note": "Diagnostic on a training image, not independent test performance. Green=labels, blue=predictions. Greedy confidence-ordered IoU matching at 0.5.",
+  "results": [
+    {
+      "model": "shrimp_seed_yolov8n",
+      "tile_size": 0,
+      "conf": 0.2,
+      "ground_truth_boxes": 40,
+      "predicted": 45,
+      "TP_IoU050": 0,
+      "FP_IoU050": 45,
+      "FN_IoU050": 40
+    },
+    {
+      "model": "shrimp_seed_yolov8n",
+      "tile_size": 320,
+      "conf": 0.2,
+      "ground_truth_boxes": 40,
+      "predicted": 82,
+      "TP_IoU050": 0,
+      "FP_IoU050": 82,
+      "FN_IoU050": 40
+    },
+    {
+      "model": "shrimp_pl_custom_v1",
+      "tile_size": 0,
+      "conf": 0.2,
+      "ground_truth_boxes": 40,
+      "predicted": 1,
+      "TP_IoU050": 1,
+      "FP_IoU050": 0,
+      "FN_IoU050": 39
+    },
+    {
+      "model": "shrimp_pl_custom_v1",
+      "tile_size": 320,
+      "conf": 0.2,
+      "ground_truth_boxes": 40,
+      "predicted": 7,
+      "TP_IoU050": 2,
+      "FP_IoU050": 5,
+      "FN_IoU050": 38
+    }
+  ]
+}

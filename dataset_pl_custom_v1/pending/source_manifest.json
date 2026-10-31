@@ -1,0 +1,134 @@
+[
+  {
+    "id": "real_001",
+    "source": "C:\\Users\\ACER\\Downloads\\images (2).jpg",
+    "image": "dataset_v2\\pending\\images\\real_001.jpg",
+    "width": 399,
+    "height": 501,
+    "sha256": "278ff88d053a46dda063b2a208a8ada086b9ccdab3c26a305da54cfccc883821",
+    "status": "needs_annotation",
+    "split": null,
+    "quality_note": "review_required"
+  },
+  {
+    "id": "real_002",
+    "source": "C:\\Users\\ACER\\Downloads\\images (1).jpg",
+    "image": "dataset_v2\\pending\\images\\real_002.jpg",
+    "width": 192,
+    "height": 128,
+    "sha256": "78916d99a7d2743497928614b993ad4cf583a77a943603efcd5cd6984f5411bf",
+    "status": "needs_annotation",
+    "split": null,
+    "quality_note": "low_resolution_review_required"
+  },
+  {
+    "id": "real_003",
+    "source": "C:\\Users\\ACER\\Downloads\\images.jpg",
+    "image": "dataset_v2\\pending\\images\\real_003.jpg",
+    "width": 547,
+    "height": 365,
+    "sha256": "2be1f4e67e99707211a02807d042f93efc6fdc64b0e6f4e4be3cfe4ab787836a",
+    "status": "needs_annotation",
+    "split": null,
+    "quality_note": "review_required"
+  },
+  {
+    "id": "real_004",
+    "source": "C:\\Users\\ACER\\Downloads\\images (4).jpg",
+    "image": "dataset_v2\\pending\\images\\real_004.jpg",
+    "width": 299,
+    "height": 168,
+    "sha256": "2dc4320aa1b240cd30d7440b4f3ea1eeb4cbbdec76686ac4eedc24e3f194f11b",
+    "status": "needs_annotation",
+    "split": null,
+    "quality_note": "low_resolution_review_required"
+  },
+  {
+    "id": "real_005",
+    "source": "C:\\Users\\ACER\\Downloads\\huong-dan-danh-gia-chat-luong-giong-tom-the-chan-trang.jpg",
+    "image": "dataset_v2\\pending\\images\\real_005.jpg",
+    "width": 672,
+    "height": 372,
+    "sha256": "132e7c9e05a0a950d8e28cc1f514c1cb4e50d2a09e8760e1900523c7968774f9",
+    "status": "needs_annotation",
+    "split": null,
+    "quality_note": "review_required"
+  },
+  {
+    "id": "real_006",
+    "source": "C:\\Users\\ACER\\Downloads\\img_1526258084651_o_1cde14aoo8fv1rac1qek1d6m946d.jpg",
+    "image": "dataset_v2\\pending\\images\\real_006.jpg",
+    "width": 720,
+    "height": 960,
+    "sha256": "2d7aa29f455172b99491f63d858d92d625a620bd3c0aace9ff6c5f1a6f5e153b",
+    "status": "needs_annotation",
+    "split": null,
+    "quality_note": "review_required"
+  },
+  {
+    "id": "real_007",
+    "source": "C:\\Users\\ACER\\Downloads\\20250224090412769thuc-trang-va-giai-phap-san-xuat-tom-giong-o-viet--1599-1.jpg",
+    "image": "dataset_v2\\pending\\images\\real_007.jpg",
+    "width": 960,
+    "height": 540,
+    "sha256": "5e78fe8fcc5bc75b17cb1f0eec9f6d13bd742d17036306149c12eb63183b9443",
+    "status": "needs_annotation",
+    "split": null,
+    "quality_note": "review_required"
+  },
+  {
+    "id": "real_008",
+    "source": "C:\\Users\\ACER\\Downloads\\images (3).jpg",
+    "image": "dataset_v2\\pending\\images\\real_008.jpg",
+    "width": 416,
+    "height": 736,
+    "sha256": "24f185ea52ab5be4d2a1a2a2f9cab44ba833db01c11473423a8113154b58ba02",
+    "status": "needs_annotation",
+    "split": null,
+    "quality_note": "review_required"
+  },
+  {
+    "id": "real_009",
+    "source": "C:\\Users\\ACER\\Downloads\\tom-giong-truc-anh-tom-post-tom-the-chan-trang.jpg",
+    "image": "dataset_v2\\pending\\images\\real_009.jpg",
+    "width": 953,
+    "height": 1006,
+    "sha256": "5d6fb77833c89807ba5a4a941c8f705ace6649312cf3e371d13cfe7607ee091b",
+    "status": "needs_annotation",
+    "split": null,
+    "quality_note": "review_required"
+  },
+  {
+    "id": "real_010",
+    "source": "C:\\Users\\ACER\\Downloads\\img6950-9092.jpg",
+    "image": "dataset_v2\\pending\\images\\real_010.jpg",
+    "width": 960,
+    "height": 720,
+    "sha256": "7c11b7c91f0b5e03b0e4f64d7ad06bd0363867104f749d89ac4c3b1cd4b1a17d",
+    "status": "needs_annotation",
+    "split": null,
+    "quality_note": "review_required"
+  },
+  {
+    "id": "real_011",
+    "source": "C:\\Users\\ACER\\Downloads\\tom-giong_1724729885.jpg",
+    "image": "dataset_v2\\pending\\images\\real_011.jpg",
+    "width": 1200,
+    "height": 800,
+    "sha256": "c693e5c32a7ac385a7fb7b4b7f20f19f10fa883bf4db90f3ca2ac457c349f78e",
+    "status": "needs_annotation",
+    "split": null,
+    "quality_note": "review_required"
+  },
+  {
+    "id": "real_012",
+    "source": "C:\\Users\\ACER\\Downloads\\tom-giong(2)_1747970326.jpg",
+    "image": "dataset_v2\\pending\\images\\real_012.jpg",
+    "width": 240,
+    "height": 240,
+    "sha256": "c4c97ae6dd9a3d81af3e9a70846e393392b4ba989d030c3aa1bb7255f72f3f43",
+    "status": "needs_annotation",
+    "split": null,
+    "quality_note": "review_required"
+  }
+]

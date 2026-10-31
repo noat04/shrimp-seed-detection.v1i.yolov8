@@ -1,0 +1,18 @@
+{
+  "backup": "D:\\\u0110\u1ed2 \u00c1N T\u1ed0T NGHI\u1ec6P\\shrimp seed detection.v1i.yolov8\\recovery\\accidental_extract_20261031_012945",
+  "moved_files": 1498,
+  "splits": {
+    "train": {
+      "images": 210,
+      "labels": 210
+    },
+    "valid": {
+      "images": 60,
+      "labels": 60
+    },
+    "test": {
+      "images": 30,
+      "labels": 30
+    }
+  }
+}

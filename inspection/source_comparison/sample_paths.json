@@ -1,0 +1,42 @@
+[
+  {
+    "source": "old",
+    "path": "train\\images\\benur2_03_05_15_png.rf.d389df41b0226e2d62d16c67a684405a.jpg"
+  },
+  {
+    "source": "old",
+    "path": "train\\images\\benur1_02_04_9_png.rf.574c90bd84beb38d7a24a300b02d25e2.jpg"
+  },
+  {
+    "source": "old",
+    "path": "train\\images\\benur3_02_05_10_png.rf.ef57c6092b15e976ede3a8592a208007.jpg"
+  },
+  {
+    "source": "old",
+    "path": "train\\images\\PL3_1_03_04_14_png.rf.26dd7d30dac019bf98ea772565ceac6a.jpg"
+  },
+  {
+    "source": "old",
+    "path": "train\\images\\benur3_02_03_8_png.rf.95c9b4d931f98f9575458f65380c5699.jpg"
+  },
+  {
+    "source": "external",
+    "path": "external_datasets\\train\\images\\8261675604086_-pic_jpg.rf.a4e02a34937a1a712e0b473661dbb2bd.jpg"
+  },
+  {
+    "source": "external",
+    "path": "external_datasets\\train\\images\\9591676180264_-pic_jpg.rf.8a8b675b246ef816eeb6ef16aba55ddf.jpg"
+  },
+  {
+    "source": "external",
+    "path": "external_datasets\\train\\images\\9911676248337_-pic_jpg.rf.4728db6ed31fb29126aa925a397e4ce7.jpg"
+  },
+  {
+    "source": "external",
+    "path": "external_datasets\\train\\images\\9751676247807_-pic_jpg.rf.ba91c5c091a6edc3d6c5ac25fd318e2a.jpg"
+  },
+  {
+    "source": "external",
+    "path": "external_datasets\\train\\images\\9481676179836_-pic_jpg.rf.da6cb4e796056d96d1b2aef2e13dc833.jpg"
+  }
+]

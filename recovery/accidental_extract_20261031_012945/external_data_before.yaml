@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 1
+names: ['shrimp']
+
+roboflow:
+  workspace: teramina
+  project: pl-detection
+  version: 1
+  license: MIT
+  url: https://universe.roboflow.com/teramina/pl-detection/dataset/1

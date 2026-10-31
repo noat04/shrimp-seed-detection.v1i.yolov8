@@ -1,0 +1,14 @@
+path: "D:/\u0110\u1ed2 \u00c1N T\u1ed0T NGHI\u1ec6P/shrimp seed detection.v1i.yolov8/external_datasets"
+train: train/images
+val: valid/images
+test: test/images
+
+nc: 1
+names: ['shrimp']
+
+roboflow:
+  workspace: teramina
+  project: pl-detection
+  version: 1
+  license: MIT
+  url: https://universe.roboflow.com/teramina/pl-detection/dataset/1

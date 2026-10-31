@@ -154,7 +154,8 @@ def detect_tiled(
     merge_iou: float,
 ) -> tuple[dict[int, str], list[dict[str, Any]]]:
     """Run YOLO on overlapping crops so small, dense shrimp seeds stay large enough to detect."""
-    pixels = np.asarray(image)
+    # Ultralytics expects BGR for NumPy inputs; Pillow images are RGB.
+    pixels = np.asarray(image)[..., ::-1].copy()
     names: dict[int, str] = {}
     detections: list[dict[str, Any]] = []
 
