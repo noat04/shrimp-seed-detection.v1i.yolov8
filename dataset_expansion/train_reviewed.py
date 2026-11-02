@@ -69,7 +69,7 @@ def main():
     parser.add_argument("--epochs", type=int, default=100)
     parser.add_argument("--imgsz", type=int, default=640,
                         help="Tiles are upscaled to this size; match imgsz used by /predict")
-    parser.add_argument("--batch", type=int, help="Default: 8 (a 4 GB GPU is nearly full at 16)")
+    parser.add_argument("--batch", type=int, help="Default: 4 (batch 8 ran out of memory on a 4 GB GPU with dense photos)")
     parser.add_argument("--device", help="'0' for the first GPU, 'cpu'; default: GPU if CUDA is available")
     parser.add_argument("--workers", type=int, default=2)
     parser.add_argument("--name", default="shrimp_seed_tiles_v3")
@@ -85,7 +85,7 @@ def main():
 
     root = Path(__file__).resolve().parents[1]
     device = args.device or default_device()
-    batch = args.batch or 8
+    batch = args.batch or 4
     weights = root / args.model
     print(f"Training {args.model} on device={device}, batch={batch}, imgsz={args.imgsz}")
     # Top-down photos have no fixed orientation: flip both ways. Rotation is left off because

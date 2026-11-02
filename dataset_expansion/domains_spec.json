@@ -1,0 +1,61 @@
+{
+  "_comment": "Round 3 (C uses the whole original train+valid so C does not regress; its test/ split stays untouched). A = 3 reviewed basin photos (real_001/004 train, real_007 pinned to test so at least one real basin photo is measured) + 13 dense PL Detection photos (head-box labels, MIT licence, Teramina). B has only real_003 so far; to_label/A and to_label/B hold unlabeled photos waiting for labels. The 4 medium-density bowl photos (real_005, real_008, real_011, real_012) fit none of A/B/C and are left out. Labels must follow ONE convention (head box); real_003 still has whole-body boxes. See docs/TECHSPEC.md section 15. Optional per-source key: \"split\": \"train\"|\"valid\"|\"test\" pins that source's photos.",
+  "domains": {
+    "A": {
+      "description": "small dark shrimp, very dense (basin photos + dense PL crops)",
+      "tile": 320
+    },
+    "B": {
+      "description": "large translucent shrimp, sparse (real_003 type)",
+      "tile": 0
+    },
+    "C": {
+      "description": "640x640 close-up crops from the original dataset",
+      "tile": 0
+    }
+  },
+  "sources": [
+    {
+      "domain": "A",
+      "images": "dataset_pl_custom_v1/pending/images",
+      "labels": "dataset_pl_custom_v1/pending/labels",
+      "files": [
+        "real_001",
+        "real_004"
+      ],
+      "split": "train"
+    },
+    {
+      "domain": "A",
+      "images": "dataset_pl_custom_v1/pending/images",
+      "labels": "dataset_pl_custom_v1/pending/labels",
+      "files": [
+        "real_007"
+      ],
+      "split": "test"
+    },
+    {
+      "domain": "A",
+      "images": "to_label/A_pl_dense/images",
+      "labels": "to_label/A_pl_dense/labels"
+    },
+    {
+      "domain": "B",
+      "images": "dataset_pl_custom_v1/pending/images",
+      "labels": "dataset_pl_custom_v1/pending/labels",
+      "files": [
+        "real_003"
+      ]
+    },
+    {
+      "domain": "C",
+      "images": "train/images",
+      "labels": "train/labels"
+    },
+    {
+      "domain": "C",
+      "images": "valid/images",
+      "labels": "valid/labels"
+    }
+  ]
+}

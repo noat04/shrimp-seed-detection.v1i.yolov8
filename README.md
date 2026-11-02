@@ -226,6 +226,7 @@ Nếu model trong tương lai vượt giới hạn dung lượng của GitHub, h
 - [Trạng thái chi tiết của dự án](docs/PROJECT_STATUS.md)
 - [Dữ liệu lưu trên Cloudinary](docs/CLOUDINARY_DATA.md)
 - [Ảnh kết quả có bounding box](docs/ANNOTATED_IMAGE_INTEGRATION.md)
+- [Tài liệu kỹ thuật (TECHSPEC)](docs/TECHSPEC.md)
 - [Công việc cần làm tiếp theo](docs/NEXT_STEPS.md)
 - Sơ đồ quy trình: [toàn quy trình](docs/train_pipeline.png), [cách mô hình học](docs/train_explained.png)
 

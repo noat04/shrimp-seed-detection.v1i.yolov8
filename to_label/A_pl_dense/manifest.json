@@ -1,0 +1,80 @@
+{
+  "APL_9481676179836_-pic_jpg.jpg": {
+    "boxes": 237,
+    "orig_split_in_PL": "train",
+    "orig_name": "9481676179836_-pic_jpg.rf.18234aba105d3a33ca101b89d297752f",
+    "source": "PL Detection v1 (Teramina, MIT, Roboflow Universe)"
+  },
+  "APL_9331676179303_-pic_jpg.jpg": {
+    "boxes": 192,
+    "orig_split_in_PL": "train",
+    "orig_name": "9331676179303_-pic_jpg.rf.021258654e5980be9d26f954d35a924e",
+    "source": "PL Detection v1 (Teramina, MIT, Roboflow Universe)"
+  },
+  "APL_9321676179272_-pic_jpg.jpg": {
+    "boxes": 176,
+    "orig_split_in_PL": "train",
+    "orig_name": "9321676179272_-pic_jpg.rf.2edc15f7d36306b8815a013f68fb3ad3",
+    "source": "PL Detection v1 (Teramina, MIT, Roboflow Universe)"
+  },
+  "APL_9401676179558_-pic_jpg.jpg": {
+    "boxes": 150,
+    "orig_split_in_PL": "train",
+    "orig_name": "9401676179558_-pic_jpg.rf.03fe9b5f3b126705e6b2e6831da79b95",
+    "source": "PL Detection v1 (Teramina, MIT, Roboflow Universe)"
+  },
+  "APL_9501676179897_-pic_jpg.jpg": {
+    "boxes": 147,
+    "orig_split_in_PL": "train",
+    "orig_name": "9501676179897_-pic_jpg.rf.1a5ac55157e2357cdf5b6084741f5fca",
+    "source": "PL Detection v1 (Teramina, MIT, Roboflow Universe)"
+  },
+  "APL_9301676179222_-pic_jpg.jpg": {
+    "boxes": 146,
+    "orig_split_in_PL": "train",
+    "orig_name": "9301676179222_-pic_jpg.rf.2ea1a1956c479559898cc9ec837e20a2",
+    "source": "PL Detection v1 (Teramina, MIT, Roboflow Universe)"
+  },
+  "APL_6801674986446_-pic_hd_jpg.jpg": {
+    "boxes": 140,
+    "orig_split_in_PL": "train",
+    "orig_name": "6801674986446_-pic_hd_jpg.rf.18eb5aa370080d924d72624ff56652ff",
+    "source": "PL Detection v1 (Teramina, MIT, Roboflow Universe)"
+  },
+  "APL_9771676247872_-pic_jpg.jpg": {
+    "boxes": 126,
+    "orig_split_in_PL": "valid",
+    "orig_name": "9771676247872_-pic_jpg.rf.78554a6086aba2c49d6c0dfb8609d757",
+    "source": "PL Detection v1 (Teramina, MIT, Roboflow Universe)"
+  },
+  "APL_9281676179176_-pic_hd_jpg.jpg": {
+    "boxes": 121,
+    "orig_split_in_PL": "train",
+    "orig_name": "9281676179176_-pic_hd_jpg.rf.a7bcd79292f091043e415f103429b105",
+    "source": "PL Detection v1 (Teramina, MIT, Roboflow Universe)"
+  },
+  "APL_9381676179476_-pic_jpg.jpg": {
+    "boxes": 111,
+    "orig_split_in_PL": "train",
+    "orig_name": "9381676179476_-pic_jpg.rf.89cdb7b9375daa2ece4f8668c8304115",
+    "source": "PL Detection v1 (Teramina, MIT, Roboflow Universe)"
+  },
+  "APL_9521676179938_-pic_hd_jpg.jpg": {
+    "boxes": 110,
+    "orig_split_in_PL": "train",
+    "orig_name": "9521676179938_-pic_hd_jpg.rf.6daf365a07294b91eb3402a7c4040da1",
+    "source": "PL Detection v1 (Teramina, MIT, Roboflow Universe)"
+  },
+  "APL_10021676248793_-pic_jpg.jpg": {
+    "boxes": 109,
+    "orig_split_in_PL": "train",
+    "orig_name": "10021676248793_-pic_jpg.rf.983abda4fa1b09950e4723fb45d40349",
+    "source": "PL Detection v1 (Teramina, MIT, Roboflow Universe)"
+  },
+  "APL_9991676248729_-pic_hd_jpg.jpg": {
+    "boxes": 101,
+    "orig_split_in_PL": "test",
+    "orig_name": "9991676248729_-pic_hd_jpg.rf.304b130b2d04d99dcd2d7148c6295dd7",
+    "source": "PL Detection v1 (Teramina, MIT, Roboflow Universe)"
+  }
+}

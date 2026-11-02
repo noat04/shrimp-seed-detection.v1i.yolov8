@@ -1,0 +1,15 @@
+{
+  "_comment": "Images waiting for labels (head-box convention). Source URL and licence were not provided; fill them in before sharing or publishing.",
+  "A/images/A_dense_600x337.jpg": {
+    "domain": "A",
+    "source": "unknown (sent by user)",
+    "license": "unknown",
+    "hand_count": null
+  },
+  "B/images/B_clear_1050x700.jpg": {
+    "domain": "B",
+    "source": "unknown (sent by user, was 9.webp)",
+    "license": "unknown",
+    "hand_count": null
+  }
+}
